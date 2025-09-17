@@ -192,7 +192,8 @@ jobs:
           name: gitleaks-report
       - name: Check Secrets Report
         run: |
-          if [ -s gitleaks-report.json ]; then
+          ISSUES="$(jq length gitleaks-report.json)"
+          if [ $ISSUES -ne 0 ]; then
           echo "Secrets detected in the codebase! Failing the pipeline."
           exit 1
           fi
