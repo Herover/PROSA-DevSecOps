@@ -145,8 +145,8 @@ jobs:
       - name: Start Flask App
         run: |
           nohup python app.py > app.log 2>&1 &
-        sleep 10
-        curl --retry 5 --retry-connrefused --silent --fail http://localhost:8000 || (echo "Flask app failed to start" && exit 1)
+          sleep 10
+          curl --retry 5 --retry-connrefused --silent --fail http://localhost:8000 || (echo "Flask app failed to start" && exit 1)
       - name: Pull ZAP Docker Image (Fixes Permission Issues)
         run: |
           docker pull ghcr.io/zaproxy/zaproxy:stable
